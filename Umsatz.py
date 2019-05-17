@@ -9,6 +9,8 @@ directory = 'C:\\Users\\alper\\Desktop\\Praktikum\\04_Workshop'
 #wb = Workbook()
 folder = os.listdir(directory)
 
+y = ' '
+liste = []
 c_sieben = 0
 c_acht = 0
 c_neun = 0
@@ -39,6 +41,13 @@ for files in folder:
 #       #laeuft durch Sheets
         for sheets in wb2:
             zaehler_dateien += 1
+            
+            #Name
+            b3 = sheet['B3'].value
+            b4 = sheet['B4'].value
+            liste = [b3, b4]
+            
+            #Werte
             c7 = sheet['C7'].value
             c8 = sheet['C8'].value
             c9 = sheet['C9'].value
@@ -49,6 +58,9 @@ for files in folder:
             c_neun += c9
             c_zehn += c10
             #c10 = sheet.cell(10,3)
+            
+            liste.append(b3)
+            liste.append(b4)
             
             print("Zaehler", zaehler_dateien)
             print(c7)
@@ -89,7 +101,9 @@ ws['B4'] = c_sieben
 ws['B5'] = c_acht
 ws['B6'] = c_neun
 ws['B7'] = c_zehn
-            
+
+wb3.save('C:\\Users\\alper\\Desktop\\Praktikum\\04_Workshop'+'Umsatz.xlsx')
+
 print("Es wurden", zaehler_dateien, "Dateien eingelesen")
 print("\n")
 print("Artikel", "        ", "Gesamtzahl")
@@ -97,5 +111,8 @@ print("Briefumschlag", "        ", c_sieben)
 print("Bleistift", "        ", c_acht)
 print("Lineal", "        ", c_neun)
 print("Textmartker", "        ", c_zehn)
-            
-wb3.save('C:\\Users\\alper\\Desktop\\Praktikum\\04_Workshop'+'Umsatz.xlsx')
+print("\n")
+kundenliste = input(str("Kundenliste ausgeben y/n ? "))
+if kundenliste == 'y':
+    print(b3, b4)
+    print(liste)
