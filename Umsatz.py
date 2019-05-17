@@ -7,7 +7,7 @@ print(cwd)
 
 directory = 'C:\\Users\\alper\\Desktop\\Praktikum\\04_Workshop'
 #wb = Workbook()
-sheets = os.listdir(directory)
+folder = os.listdir(directory)
 
 c_sieben = 0
 c_acht = 0
@@ -20,24 +20,24 @@ sheet_count = 0
 #os.chdir(".\Rechnung\")
 
 #laeuft durch alle Excel Dateien
-for sheet2 in sheets: 
-    if sheet2.endswith(".xlsx"):        
+for files in folder: 
+    if files.endswith(".xlsx"):        
         
         #wb = load_workbook(filename)
         #wb2 = load_workbook('Rechnung_EricIdle.xlsx')
-        wb2 = load_workbook(os.path.join(directory, sheet2))
+        wb2 = load_workbook(os.path.join(directory, files))
         #print(wb2.sheetnames)
         sheet = wb2.active
         
-        #Zaehle Anzahl der Worksheets
+        #Zaehle Anzahl der Sheets
         for anzahl_sheet in wb2:
             sheet_count +=1
             print("Sheet_Count", sheet_count)
             print(wb2.sheetnames)
         
         
-#        #laeuft durch Worksheets
-        for sheet3 in wb2:
+#       #laeuft durch Sheets
+        for sheets in wb2:
             zaehler_dateien += 1
             c7 = sheet['C7'].value
             c8 = sheet['C8'].value
@@ -68,6 +68,7 @@ for sheet2 in sheets:
                         #neues excel-File erzeugen
     else:
         print("Datei konnte nicht gefunden werden")
+        print("\n")
         continue
 
 #        print("Erstelle neues workbook")
@@ -89,7 +90,8 @@ ws['B5'] = c_acht
 ws['B6'] = c_neun
 ws['B7'] = c_zehn
             
-print("Es wurden", sheet_count, "Dateien eingelesen")
+print("Es wurden", zaehler_dateien, "Dateien eingelesen")
+print("\n")
 print("Artikel", "        ", "Gesamtzahl")
 print("Briefumschlag", "        ", c_sieben)
 print("Bleistift", "        ", c_acht)
